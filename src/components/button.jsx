@@ -7,7 +7,7 @@ const Button = (props) => {
         style={{ width: "fit-content" }}
       >
         <span>{props.content}</span>
-        <i class="bi bi-arrow-return-left text-black"></i>
+        <i className="bi bi-arrow-return-left text-black"></i>
       </div>
     </>
   );

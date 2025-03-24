@@ -1,31 +1,59 @@
 import React from "react";
 import Marequee from "./marequee";
+import { motion } from "framer-motion";
 
 const Marequees = () => {
   const elements = [
-    "/public/logo1.png",
-    "/public/logo2.png",
-    "/public/logo3.png",
-    "/public/logo4.png",
-    "/public/logo5.png",
-    "/public/logo6.png",
-    "/public/logo7.png",
-    "/public/logo8.png",
-    "/public/logo9.png",
+    [
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+    ],
+    [
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+      "/public/logo1.png",
+      "/public/logo2.png",
+    ],
   ];
   return (
     <>
-      <div className="mt-[20vh] mb-20vh">
-        <div className=" whitespace-nowrap h-[20vh]">
-          {elements.map((element, index) => (
+      <div className="mt-[20vh] mb-[30vh]">
+        <motion.div
+          initial={{ x: "0" }}
+          animate={{ x: "-100%" }}
+          transition={{ ease: "linear", duration: 10, repeat: Infinity }}
+          className=" whitespace-nowrap h-[20vh] "
+        >
+          {elements[0].map((element, index) => (
             <Marequee data={element} key={index} />
           ))}
-        </div>
-        <div className=" whitespace-nowrap h-[20vh]">
-          {elements.map((element, index) => (
+          {elements[1].map((element, index) => (
             <Marequee data={element} key={index} />
           ))}
-        </div>
+        </motion.div>
+        <motion.div
+          initial={{ x: "0" }}
+          animate={{ x: "100%" }}
+          transition={{ ease: "linear", duration: 10, repeat: Infinity }}
+          className=" whitespace-nowrap h-[20vh] translate-x-[-100%]"
+        >
+          {elements[0].map((element, index) => (
+            <Marequee data={element} key={index} direction={"right"} />
+          ))}
+          {elements[1].map((element, index) => (
+            <Marequee data={element} key={index} direction={"right"} />
+          ))}
+        </motion.div>
       </div>
     </>
   );

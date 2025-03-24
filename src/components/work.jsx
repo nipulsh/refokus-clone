@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useScroll } from "framer-motion";
 
 const Work = () => {
-  let images = [
+  const [images, setImages] = useState([
     {
       url: "https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       top: "50%",
@@ -38,7 +39,46 @@ const Work = () => {
       left: "55%",
       isActive: false,
     },
-  ];
+  ]);
+
+  const { scrollYProgress } = useScroll();
+
+  scrollYProgress.on("change", (data) => {
+    function imagesShow(arr) {
+      for (let i = 0; i < images.length; i++) {
+        images[i].isActive = false;
+      }
+      for (let i = 0; i < arr.length; i++) {
+        images[arr[i]].isActive = true;
+      }
+      setImages([...images]);
+    }
+
+    console.log(data);
+    switch (Math.floor(data * 100)) {
+      case 2:
+        imagesShow([0]);
+        break;
+      case 3:
+        imagesShow([0, 1]);
+        break;
+      case 4:
+        imagesShow([0, 1, 2]);
+        break;
+      case 5:
+        imagesShow([0, 1, 2, 3]);
+        break;
+      case 6:
+        imagesShow([0, 1, 2, 3, 4]);
+        break;
+      case 7:
+        imagesShow([0, 1, 2, 3, 4, 5]);
+        break;
+
+      default:
+        break;
+    }
+  });
 
   return (
     <>
